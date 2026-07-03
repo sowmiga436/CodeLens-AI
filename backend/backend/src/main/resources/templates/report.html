@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CodeLens AI Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            width: 600px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px lightgray;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>📊 CodeLens AI Report</h1>
+
+    <p><b>Lines:</b> <span th:text="${lines}"></span></p>
+    <p><b>Classes:</b> <span th:text="${classes}"></span></p>
+    <p><b>Methods:</b> <span th:text="${methods}"></span></p>
+    <p><b>Comments:</b> <span th:text="${comments}"></span></p>
+    <p><b>Empty Lines:</b> <span th:text="${emptyLines}"></span></p>
+    <p><b>Complexity Score:</b> <span th:text="${complexity}"></span></p>
+    <p><b>Quality Score:</b> <span th:text="${score}"></span>/100</p>
+    <p><b>Grade:</b> <span th:text="${grade}"></span></p>
+
+    <h3>Suggestions</h3>
+    <pre th:text="${suggestion}"></pre>
+
+    <h3>Code</h3>
+    <pre th:text="${content}"></pre>
+</div>
+
+</body>
+</html>
