@@ -10,14 +10,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.codelens.backend.service.GroqService;
+
 @Controller
 public class UploadController {
+                     
+
+private final GroqService groqService;
+
+public UploadController(GroqService groqService) {
+    this.groqService = groqService;
+}
 
     private final String UPLOAD_DIR = "uploads/";
 
     @PostMapping("/api/upload")
 public String uploadFile(@RequestParam("file") MultipartFile file,
                          Model model){
+         
 
     try {
 
@@ -33,6 +43,8 @@ public String uploadFile(@RequestParam("file") MultipartFile file,
 Files.write(path, file.getBytes());
 
 String content = Files.readString(path);
+String aiSuggestion =
+        groqService.analyzeCode(content);
 long lines = Files.lines(path).count();
 long methods = content.lines()
         .filter(line ->
@@ -119,6 +131,7 @@ model.addAttribute("score", score);
 model.addAttribute("suggestion", suggestion + longMethodWarning);
 model.addAttribute("content", content);
 model.addAttribute("grade", grade);
+model.addAttribute("aiSuggestion", aiSuggestion);
 
 return "report";
 
