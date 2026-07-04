@@ -14,6 +14,7 @@ import com.codelens.backend.service.GroqService;
 
 @Controller
 public class UploadController {
+    
                      
 
 private final GroqService groqService;
@@ -24,10 +25,10 @@ public UploadController(GroqService groqService) {
 
     private final String UPLOAD_DIR = "uploads/";
 
-    @PostMapping("/api/upload")
-public String uploadFile(@RequestParam("file") MultipartFile file,
-                         Model model){
-         
+   @PostMapping("/upload")
+public String uploadFile(
+        @RequestParam("file") MultipartFile file,
+        Model model) {
 
     try {
 
@@ -137,7 +138,11 @@ return "report";
 
 
     } catch (Exception e) {
-        return "Error : " + e.getMessage();
-    }
+    e.printStackTrace();
+    return "Groq Error: "
+            + e.getClass().getName()
+            + " - "
+            + e.getMessage();
+}
 }
 }

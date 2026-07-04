@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CodeLens AI</title>
+    <title>CodeLens AI - Upload</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>CodeLens AI</h1>
 
-    <form action="/api/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit">Upload</button>
-    </form>
+<div class="container">
+    <div class="card">
+
+        <h1>🚀 CodeLens AI</h1>
+        <p>Upload your Java file and get an AI-powered code review.</p>
+
+        <form method="post"
+              action="/upload"
+              enctype="multipart/form-data">
+
+            <label class="upload-box">
+                📁 Choose Java File
+                <input type="file"
+                       name="file"
+                       accept=".java"
+                       required>
+            </label>
+
+            <button type="submit">
+                🔍 Analyze Code
+            </button>
+        </form>
+
+        <button onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+</div>
+
+<script src="/js/app.js"></script>
+
 </body>
 </html>
